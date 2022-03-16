@@ -34,35 +34,26 @@ struct ContentView: View {
                 }
                 
                 .padding()
-                
-                HStack {
+
                     ZStack {
                         
                         Rectangle()
                             .fill(Color.black)
-                            .frame(width: 170, height: 150)
+                            .frame(width: 350, height: 250)
                         
-                        ForEach(network.products) {
-                            product in
-                            Text(product.title)
-                                .foregroundColor(Color.white)
-                                .multilineTextAlignment(.center)
-                        }
-                            
-                    }.onAppear {
-                        network.fetchProduct()
+                        ScrollView {
+                        
+                            ForEach(network.products) {
+                                product in
+                                Text(product.title)
+                                    .foregroundColor(Color.white)
+                            }
+                        
+                            }.onAppear {
+                            network.fetchProduct()
+                            }
                     }
-                
-                    
-                    ZStack {
-                        
-                        Rectangle()
-                            .fill(Color.black)
-                            .frame(width: 170, height: 150)
-                        
-                        Text("product1")
-                    }
-                }
+    
                 
                 HStack {
                     
