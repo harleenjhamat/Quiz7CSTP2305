@@ -8,9 +8,83 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var network: Network
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                
+                HStack {
+                    
+                    Text("Storefront")
+                        .fontWeight(.heavy)
+                        .multilineTextAlignment(.leading)
+                        .padding()
+                    
+                    NavigationLink(destination: SecondScreen(), label:{
+                        Text("+")
+                            .font(.largeTitle)
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(.white)
+                            .background(.black)
+                            
+                    }
+)
+                }
+                
+                .padding()
+                
+                HStack {
+                    ZStack {
+                        
+                        Rectangle()
+                            .fill(Color.black)
+                            .frame(width: 170, height: 150)
+                        
+                        ForEach(network.products) {
+                            product in
+                            Text(product.title)
+                                .foregroundColor(Color.white)
+                                .multilineTextAlignment(.center)
+                        }
+                            
+                    }.onAppear {
+                        network.fetchProduct()
+                    }
+                
+                    
+                    ZStack {
+                        
+                        Rectangle()
+                            .fill(Color.black)
+                            .frame(width: 170, height: 150)
+                        
+                        Text("product1")
+                    }
+                }
+                
+                HStack {
+                    
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.black)
+                            .frame(width: 350, height: 150)
+                        
+                        VStack {
+                        
+                            Text("Product of the day")
+                                .fontWeight(.heavy)
+                                .foregroundColor(Color.white)
+                                .multilineTextAlignment(.center)
+                            
+                                .padding()
+                        }
+                        
+                    }
+                }
+            }
+        }
     }
 }
 

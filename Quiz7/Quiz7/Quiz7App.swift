@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Quiz7App: App {
+    
+    let network = Network()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(network)
         }
     }
 }
